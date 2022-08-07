@@ -18,7 +18,8 @@ async function listContacts() {
 
 async function getContactById(contactId) {
   const contacts = await listContacts();
-  const contact = contacts.find((contact) => contact.id === contactId);
+  const id = contactId.toString();
+  const contact = contacts.find((contact) => contact.id === id);
 
   return contact || null;
 }
@@ -39,13 +40,14 @@ async function addContact(name, email, phone) {
 
 async function removeContact(contactId) {
   const contacts = await listContacts();
-  const idx = contacts.findIndex((contact) => contact.id === contactId);
+  const id = contactId.toString();
+  const idx = contacts.findIndex((contact) => contact.id === id);
 
   if (idx === -1) {
     return null;
   }
 
-  const removedContact = contacts.splice(idx, 1);
+  const [removedContact] = contacts.splice(idx, 1);
   await updatingContacts(contacts);
 
   return removedContact;

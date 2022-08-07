@@ -1,3 +1,4 @@
+const argv = require("yargs").argv;
 const API = require("./contacts");
 
 async function invokeAction({ action, id, name, email, phone }) {
@@ -27,7 +28,4 @@ async function invokeAction({ action, id, name, email, phone }) {
   }
 }
 
-invokeAction({
-  action: "get",
-  id: "9",
-});
+invokeAction(argv);
